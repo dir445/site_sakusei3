@@ -1,7 +1,6 @@
 $('#search-button').on('click', function() {
     const KEY = 'AIzaSyB9K3_Z5CmKcyUzz0Rmp9UEbjqUewTprlw';
-    let url = 'https://www.googleapis.com/youtube/v3/search?';
-    
+    let url = 'https://www.googleapis.com/youtube/v3/search?';    
     url += 'type=video';
     url += '&part=snippet';
     url += '&q=' + $('#query').val();
@@ -9,13 +8,31 @@ $('#search-button').on('click', function() {
     url += '&videoSyndicated=true';
     url += '&maxResults=6';
     url += '&key=' + KEY;
-    url += '&callback=MakeVideoList';
     
     console.log(url);
-    
+
+    $.ajax({
+        url: url,
+        dataType: 'jsonp'
+    }).done(showVideos)
+    .fail((data)=> {
+        alert('通信に失敗しました');
+    });    
     return false;
 });
 
-function MakeVideoList(data){
-    console.log(data);
+function showVideos(data){
+    if(!data.items){
+        alert('データを取得できませんでした');
+        return;
+    }
+    let result = '';
+    for(let item of data.items){
+        let video = '<div class="video"><iframe src="https://www.youtube.com/embed/';
+        video += item.id.videoId;
+        video += '" allowfullscreen></iframe></div>';
+        result += video;
+    }
+    console.log(result);
+    $('#videoList').html(result);
 }
