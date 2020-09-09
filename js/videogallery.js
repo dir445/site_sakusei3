@@ -1,5 +1,6 @@
+console.log(APIKEY);
+
 $('#search-button').on('click', function() {
-    const KEY = 'AIzaSyB9K3_Z5CmKcyUzz0Rmp9UEbjqUewTprlw';
     let url = 'https://www.googleapis.com/youtube/v3/search?';    
     url += 'type=video';
     url += '&part=snippet';
@@ -7,7 +8,7 @@ $('#search-button').on('click', function() {
     url += '&videoEmbeddable=true';
     url += '&videoSyndicated=true';
     url += '&maxResults=6';
-    url += '&key=' + KEY;
+    url += '&key=' + APIKEY;
     
     console.log(url);
 
