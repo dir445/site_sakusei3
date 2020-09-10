@@ -4,28 +4,30 @@
     <meta charset="UTF-8">
     <title>javascriptサイト作成</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/slideshow.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
 </head>
 <body>
     <header>
         <ul>
             <li><a href="index.html">メニュー</a></li>
-            <li><a href="">スライドショー</a></li>
+            <li><a href="slideshow.html">スライドショー</a></li>
             <li><a href="videogallery.html">動画</a></li>
         </ul>
     </header>
     <main>
         <div class="slideshow">
             <button class="prev-button"></button>
-            <div id="slide-list">
+            <div class="slide-list">
 
             </div>
             <button class="next-button"></button>
             <ul class="dots">
-                
+                <li class="dot"><button></button></li>
+                <li class="dot"><button></button></li>
             </ul>
         </div>
     </main>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="js/slideshow.js"></script>
 </body>
 </html>

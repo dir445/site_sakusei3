@@ -1,0 +1,55 @@
+.slideshow {
+    width: 500px;
+    margin: auto;
+    position: relative;
+    display: block;
+}
+
+.prev-button ,
+.next-button {
+    position: absolute;
+    top: 50%;
+    width: 20px;
+    height: 20px;
+}
+
+.prev-button {
+    left: -25px;
+}
+
+.next-button {
+    right: -25px;
+}
+
+.slide-list {
+    background-color: tomato;
+    display: block;
+    margin: auto;
+    overflow: hidden;
+}
+
+.slide {
+    float: left;
+}
+
+.slide img{
+    width: 100%;
+}
+
+.dots {
+    position: absolute;
+    bottom: -25px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: auto;
+    list-style: none;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    padding-inline-start: 0px;
+}
+
+.dots li {
+    position: relative;
+    display: inline-block;
+}
