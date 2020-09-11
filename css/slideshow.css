@@ -1,8 +1,8 @@
 .slideshow {
-    width: 500px;
     margin: auto;
     position: relative;
     display: block;
+    margin-bottom: 24px;
 }
 
 .prev-button ,
@@ -22,14 +22,19 @@
 }
 
 .slide-list {
-    background-color: tomato;
-    display: block;
-    margin: auto;
     overflow: hidden;
+    position: relative;
 }
 
-.slide {
-    float: left;
+.slide-track{
+    background-color: tomato;
+    position: relative;
+    height: auto;
+    transition: transform 0.5s;
+}
+
+.slide{
+    position: absolute;
 }
 
 .slide img{
