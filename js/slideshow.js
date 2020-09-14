@@ -1,5 +1,5 @@
 let imgSrcs = ['img/1.jpg','img/2.jpg','img/3.jpg','img/4.jpg','img/5.jpg'];
-let slides = [];
+let slides = [null];
 let slideList = document.getElementsByClassName('slide-list')[0];
 let slideTrack = document.getElementsByClassName('slide-track')[0];
 let slideshow = document.getElementsByClassName('slideshow')[0];
@@ -16,30 +16,28 @@ let loaded = {
     }
 };
 
+console.log(5%5);
+console.log(-1%5);
+
 let slider = {
     current : 0,
     animate : false,
-    prev() {
-        return (this.current - 1) % slides.length;
-    },
-    next() {
-        return (this.current + 1) % slides.length;
-    },
-    slideRight() {
-        this.current++;
-        if(this.current >= slides.length){
-            this.current = 0;
-            slideTrack.style.transition = 'transform : 0s';
-            slideTrack.style.transform = 'translateX('+ maxWidth + 'px)';
-            slideTrack.addEventListener('ontransitionend',()=>{
-                console.log('end');
-                slideTrack.style.transition = 'transform : 0.5s';
-                slideTrack.style.transform = 'translateX('+ (this.current * -maxWidth) + 'px)';
-            },{once:true});
+
+    move(moveCount) {
+        if(this.animate){
+            return;
         }
-        else {
-            slideTrack.style.transform = 'translateX('+ (this.current * -maxWidth) + 'px)';
-        }
+        //移動するときだけトランジションを有効にする
+        slideTrack.style.transition = 'transform 0.5s';
+        slideTrack.style.transform = 'translateX('+ ((this.current + moveCount + 1) * -maxWidth) + 'px)';
+        this.animate = true;
+        slideTrack.addEventListener('transitionend',()=>{            
+            this.current = (this.current + moveCount) % imgSrcs.length;
+            this.animate = false;
+            slideTrack.style.transition ='none';
+            slideTrack.style.transform = 'translateX('+  (this.current + 1) * -maxWidth + 'px)';
+            console.log(this.current);
+        },{once:true});        
     }    
 };
 
@@ -64,9 +62,16 @@ for(src of imgSrcs) {
     slideTrack.appendChild(slide);
 }
 
-console.log(slider.next());
-
 function onImagesLoaded() {
+    //スライドの先頭に末尾のスライドの複製を挿入
+    let topClone = slides[slides.length - 1].cloneNode(true);
+    slides[0] = topClone;
+    slideTrack.insertBefore(topClone, slideTrack.firstChild);
+    //スライドの末尾に先頭のスライドの複製を追加
+    let bottomClone = slides[1].cloneNode(true);
+    slides.push(bottomClone);
+    slideTrack.appendChild(bottomClone);
+
     for(let slide of slides) {
         slide.style.width =  maxWidth + 'px';
     }
@@ -77,8 +82,9 @@ function onImagesLoaded() {
     for(let i = 0;i < slides.length; ++i) {
         slides[i].style.left = maxWidth * i +'px';
     }
-    //slides[slides.length - 1].style.left = -maxWidth + 'px';
 
+    slideTrack.style.transform = 'translateX('+  -maxWidth + 'px)';
 
-    document.getElementsByClassName('next-button')[0].addEventListener('click',()=>slider.slideRight());
+    document.getElementsByClassName('next-button')[0].addEventListener('click',()=>slider.move(1));
+    document.getElementsByClassName('prev-button')[0].addEventListener('click',()=>slider.move(-1));
 }

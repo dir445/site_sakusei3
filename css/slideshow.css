@@ -30,7 +30,7 @@
     background-color: tomato;
     position: relative;
     height: auto;
-    transition: transform 0.5s;
+    /*transition: transform 0.5s;*/
 }
 
 .slide{
