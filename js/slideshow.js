@@ -1,16 +1,19 @@
 let imgSrcs = ['img/1.jpg','img/2.jpg','img/3.jpg','img/4.jpg','img/5.jpg'];
-let slides = [null];
+
 let slideList = document.getElementsByClassName('slide-list')[0];
 let slideTrack = document.getElementsByClassName('slide-track')[0];
 let slideshow = document.getElementsByClassName('slideshow')[0];
 let prevButton = document.getElementsByClassName('prev-button')[0];
 let nextButton = document.getElementsByClassName('next-button')[0];
 let dotList = document.getElementsByClassName('dots')[0];
-const cloneCount = 1;
+let dotButtons = [];
+
+const sideCloneCount = Math.floor(imgSrcs.length / 2);
+let slides = new Array(sideCloneCount);
 let slideWidth = 0;
 let slideHeight = 0;
 
-let loaded = {
+let loadCounter = {
     count : 0,
     add() {
         this.count++;
@@ -20,33 +23,53 @@ let loaded = {
     }
 };
 
+function selectDot(index) {
+    const className = 'dot-selected';
+    dotButtons.forEach(b => b.classList.remove(className));
+    dotButtons[index].classList.add(className);
+}
+
 let slider = {
     current : 0,
     animate : false,
     trackX : 0,
+    duration : 0.5,
     resetTrackPosition(){
-        this.trackX = (this.current + cloneCount) * -slideWidth;
+        this.trackX = (this.current + sideCloneCount) * -slideWidth;
         slideTrack.style.transform = 'translateX('+  this.trackX + 'px)';
     },
     move(moveCount) {
         if(this.animate){
             return;
         }
+        const dest = mod(this.current + moveCount,  imgSrcs.length);
+        selectDot(dest);
         //移動するときだけトランジションを有効にする
-        slideTrack.style.transition = 'transform 0.5s';
+        slideTrack.style.transition = 'transform ' + this.duration + 's';
         slideTrack.style.transform = 'translateX('+  ( this.trackX - moveCount * slideWidth ) + 'px)';
         this.animate = true;
         slideTrack.addEventListener('transitionend',()=>{            
-            this.current = mod(this.current + moveCount,  imgSrcs.length);
+            this.current = dest;
             this.animate = false;
             slideTrack.style.transition ='none';
             this.resetTrackPosition();
-            console.log('transition end');
         },{once:true});        
-    }    
+    },
+    moveTo(dest) {
+        if(this.animate || dest == this.current){
+            return false;
+        }
+        const noLoop = dest - this.current;
+        const loop = dest > this.current ? noLoop - imgSrcs.length
+                                         : noLoop + imgSrcs.length;
+        const moveCount = Math.abs(noLoop) < Math.abs(loop) ? noLoop : loop;
+        this.move(moveCount);
+        return true;
+    } 
 };
 
-for(src of imgSrcs) {
+for(let i = 0; i < imgSrcs.length; i++) {
+    const src = imgSrcs[i];
     let img = new Image();
     img.src = src;
     img.onload = ()=> {
@@ -56,7 +79,7 @@ for(src of imgSrcs) {
         if(img.naturalHeight > slideHeight){
             slideHeight = img.naturalHeight;
         }
-        loaded.add();
+        loadCounter.add();
     };
     img.draggable = false;
     let slide = document.createElement('div');
@@ -64,32 +87,50 @@ for(src of imgSrcs) {
     slide.appendChild(img);
     slides.push(slide);
     slideTrack.appendChild(slide);
+    dotList.appendChild(createDotListElement(i,dotButtons));
 }
+
+selectDot(slider.current);
 
 function mod(a,b) {
     return (a % b + b) % b;
 }
 
+function createDotListElement(index,buttons) {
+    let dot = document.createElement('li');
+    dot.classList.add('dot');
+    let button = document.createElement('button');
+    button.onclick = () =>{
+        if(!slider.moveTo(index)){
+            return;
+        }        
+    };
+    buttons.push(button);
+    dot.appendChild(button);
+    return dot;
+}
+
 function onImagesLoaded() {
     //スライドの先頭に末尾のスライドの複製を挿入
-    let topClone = slides[slides.length - 1].cloneNode(true);
-    slides[0] = topClone;
-    slideTrack.insertBefore(topClone, slideTrack.firstChild);
-    //スライドの末尾に先頭のスライドの複製を追加
-    let bottomClone = slides[1].cloneNode(true);
-    slides.push(bottomClone);
-    slideTrack.appendChild(bottomClone);
-
-    for(let slide of slides) {
-        slide.style.width =  slideWidth + 'px';
+    for(let i = 0;i<sideCloneCount; i++){
+        let topClone = slides[slides.length - i -1].cloneNode(true);
+        slides[sideCloneCount - 1 - i] = topClone;
+        slideTrack.insertBefore(topClone, slideTrack.firstChild);        
     }
-    slideTrack.style.width = (slideWidth * slides.length) + 'px';     
+    //スライドの末尾に先頭のスライドの複製を追加
+    for(let i = 0;i<sideCloneCount; i++){
+        let bottomClone = slides[sideCloneCount + i].cloneNode(true);
+        slides.push(bottomClone);
+        slideTrack.appendChild(bottomClone);
+    }
+    slideTrack.style.width = (slideWidth * slides.length) + 'px';  
     slideTrack.style.height = slideHeight + 'px';  
     slideList.style.width = slideWidth + 'px';
     slideshow.style.width = slideWidth + 'px';
-    for(let i = 0;i < slides.length; ++i) {
+    slides.forEach((slide,i)=>{
+        slide.style.width = slideWidth + 'px';
         slides[i].style.left = slideWidth * i +'px';
-    }
+    });
     slider.resetTrackPosition();
     //ボタンを押したときの動作を設定
     prevButton.onclick = ()=>slider.move(-1);
@@ -102,11 +143,11 @@ function startDrag(event) {
     if(slider.animate){
         return;
     }
-    let dragMin = slideWidth * 0.2;
-    let dragMax = slideWidth * 0.4;
+    const dragMin = slideWidth * 0.2;
+    const dragMax = slideWidth * 0.4;
     let mousedownX = event.pageX;
     let moveX = 0;
-    slideTrack.onmousemove = (event) => {
+    slideTrack.onmousemove = event => {
         moveX = event.pageX - mousedownX;
         if(Math.abs(moveX) > dragMax) {
             endDrag();
@@ -115,7 +156,7 @@ function startDrag(event) {
         }
         moveTrack(moveX);
     };
-    let onMouseUp = ()=>{
+    let onMouseUpOrLeave = ()=> {
         endDrag();
         if(Math.abs(moveX) >= dragMin) {
             slider.move(Math.sign(-moveX));
@@ -123,8 +164,8 @@ function startDrag(event) {
             slider.move(0);
         }
     };
-    slideTrack.onmouseup = onMouseUp;
-    slideTrack.onmouseleave = onMouseUp;
+    slideTrack.onmouseup = onMouseUpOrLeave;
+    slideTrack.onmouseleave = onMouseUpOrLeave;
 }
 
 function endDrag(){
@@ -135,5 +176,4 @@ function endDrag(){
 
 function moveTrack(move) {
     slideTrack.style.transform = 'translateX('+ ( slider.trackX + move ) + 'px)';
-    console.log(move);
 }

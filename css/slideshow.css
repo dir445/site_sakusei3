@@ -58,3 +58,7 @@
     position: relative;
     display: inline-block;
 }
+
+.dot-selected {
+    background-color: teal;
+}
