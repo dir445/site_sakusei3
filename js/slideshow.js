@@ -8,20 +8,117 @@ let nextButton = document.getElementsByClassName('next-button')[0];
 let dotList = document.getElementsByClassName('dots')[0];
 let dotButtons = [];
 
+let aaa='aaa';
+function Test(str) {
+    this.log = function (){
+        console.log('test:' + str);
+    }
+    this.setbbb = function() {
+        str = 'bbb';
+    }
+}
+let test = new Test(aaa);
+test.log();
+aaa = 'bbb';
+test.log();
+test.setbbb();
+test.log();
+
+function LoadCounter(max, onloaded) {
+    this.count = 0;
+    this.add = function() {
+        this.count++;
+        if(this.count == max) {
+            onloaded();
+        }
+    }
+}
+
+// function Slider(slideTrack,slideCount,slideWidth) {
+//     this.current = 0;
+//     this.animate = false;
+//     this.trackX = 0;
+//     this.duration = 0.5;
+
+//     this.resetTrackPosition = function() {
+//         this.trackX = (this.current + sideCloneCount) * -slideWidth;
+//         this.slideTrack.style.transform = 'translateX('+  this.trackX + 'px)';
+//     };
+    
+//     this.move = function(moveCount) {
+//         if(this.animate){
+//             return;
+//         }
+//         const dest = mod(this.current + moveCount,  slideCount);
+//         selectDot(dest);
+//         //移動するときだけトランジションを有効にする
+//         this.slideTrack.style.transition = 'transform ' + this.duration + 's';
+//         this.slideTrack.style.transform = 'translateX('+  ( this.trackX - moveCount * slideWidth ) + 'px)';
+//         this.animate = true;
+//         slideTrack.addEventListener('transitionend',()=>{            
+//             this.current = dest;
+//             this.animate = false;
+//             this.slideTrack.style.transition ='none';
+//             this.resetTrackPosition();
+//         },{once:true});        
+//     };
+    
+//     this.moveTo = function(dest) {
+//         if(this.animate || dest == this.current){
+//             return false;
+//         }
+//         const noLoop = dest - this.current;
+//         const loop = dest > this.current ? noLoop - slideCount
+//                                          : noLoop + slideCount;
+//         const moveCount = Math.abs(noLoop) < Math.abs(loop) ? noLoop : loop;
+//         this.move(moveCount);
+//         return true;
+//     };
+// }
+
+// let slideshows = document.getElementsByClassName('slideshow');
+// for(const slideshow of slideshows) {
+//     let slides = slideshow.children('div');
+
+
+
+//     let prevButton = document.createElement('button');
+//     prevButton.classList.add('prev-button');
+//     let nextButton = document.createElement('button');
+//     nextButton.classList.add('next-button');
+//     let slideList = document.createElement('div');
+//     slideList.classList.add('slide-list');
+//     let slideTrack = document.createElement('div');
+//     slideTrack.className.add('slide-track');
+//     slideList.appendChild(slideTrack);
+//     let dotList = document.createElement('ul');
+//     dotList.classList.add('dots');  
+//     slideshow.appendChild(prevButton);
+//     slideshow.appendChild(slideList);
+//     slideshow.appendChild(nextButton);
+//     slideshow.appendChild(dots);
+    
+    
+// }
+
+
+
+
 const sideCloneCount = Math.floor(imgSrcs.length / 2);
 let slides = new Array(sideCloneCount);
 let slideWidth = 0;
 let slideHeight = 0;
 
-let loadCounter = {
-    count : 0,
-    add() {
-        this.count++;
-        if(this.count == imgSrcs.length){
-            onImagesLoaded();
-        }
-    }
-};
+let loadCounter = new LoadCounter(imgSrcs.length , onImagesLoaded);
+// let loadCounter = {
+//     count : 0,
+//     add() {
+//         this.count++;
+//         if(this.count == imgSrcs.length){
+//             onImagesLoaded();
+//         }
+//     }
+// };
 
 function selectDot(index) {
     const className = 'dot-selected';
@@ -145,7 +242,7 @@ function startDrag(event) {
     }
     const dragMin = slideWidth * 0.2;
     const dragMax = slideWidth * 0.4;
-    let mousedownX = event.pageX;
+    const mousedownX = event.pageX;
     let moveX = 0;
     slideTrack.onmousemove = event => {
         moveX = event.pageX - mousedownX;
