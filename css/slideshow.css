@@ -1,8 +1,12 @@
 .slideshow {
     margin: auto;
     position: relative;
-    display: block;
+    display: none;
     margin-bottom: 24px;
+}
+
+.slideshow.slideshow-initialized {
+    display: block;
 }
 
 .prev-button ,

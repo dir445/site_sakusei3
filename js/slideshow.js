@@ -87,6 +87,8 @@ for(const slideshow of slideshows) {
         //スライドをドラッグした時の動作を設定
         slideTrack.onmousedown  = startDrag;
 
+        slideshow.classList.add('slideshow-initialized');
+
         function startDrag(event) {
             if(slider.animate){
                 return;
