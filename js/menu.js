@@ -1,4 +1,5 @@
 $('.menu-item-link').click(function() {
+    $(this).toggleClass('menu-open');
     $('+.submenu',this).slideToggle();
     return false;
 });

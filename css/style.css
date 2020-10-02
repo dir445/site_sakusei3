@@ -1,10 +1,36 @@
+
 /* header */
+header ul {
+    display :flex;
+}
+header li {
+    list-style: none;
+    margin-right: 1rem;
+}
 
 /* index */
+#menu {
+    /*position: absolute;*/
+}
+
 #accordion-menu {
     display: none;
 }
 
 .submenu {
     display: none;
+}
+
+.menu-item-link:after {
+    font-family: "Font Awesome 5 Free";
+    content: '\f106';
+    font-weight: 900;
+}
+
+.menu-item-link.menu-open:after {
+    content: '\f107';
+}
+
+#accordion-menu li{
+    list-style: none;
 }
