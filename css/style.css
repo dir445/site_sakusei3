@@ -10,11 +10,28 @@ header li {
 
 /* index */
 #menu {
-    /*position: absolute;*/
+    position: absolute;
 }
 
 #accordion-menu {
     display: none;
+    background-color: darkgrey;
+    position: absolute;
+    width: 100%;
+}
+
+@media screen and (min-width: 800px) {
+    #menu-main {
+        display: flex;
+    }
+    #accordion-menu {
+        display: block;
+        position: relative;
+        width: 200px;
+    }
+    #nav-toggle {
+        display: none;
+    }
 }
 
 .submenu {
@@ -33,4 +50,13 @@ header li {
 
 #accordion-menu li{
     list-style: none;
+}
+
+#index-article{
+    margin: 0 auto;
+    width: 80%;
+}
+
+#index-article p{
+    word-wrap: break-word
 }
