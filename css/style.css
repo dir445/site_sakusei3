@@ -9,15 +9,19 @@ header li {
 }
 
 /* index */
-#menu {
-    position: absolute;
+#menu-main {
+    margin: 0 auto;
+    width: 80%;
 }
 
 #accordion-menu {
     display: none;
     background-color: darkgrey;
-    position: absolute;
-    width: 100%;
+}
+
+#nav-toggle {
+    outline: 0;
+    margin: 0.5rem;
 }
 
 @media screen and (min-width: 800px) {
@@ -29,12 +33,17 @@ header li {
         position: relative;
         width: 200px;
     }
-    #nav-toggle {
+    /*#nav-toggle {
         display: none;
-    }
+    }*/
+}
+
+.menu-item {
+    padding-left: 1rem;
 }
 
 .submenu {
+    padding-left: 1rem;
     display: none;
 }
 
@@ -48,11 +57,15 @@ header li {
     content: '\f107';
 }
 
-#accordion-menu li{
+#accordion-menu li {
     list-style: none;
 }
 
-#index-article{
+#accordion-menu a {
+    text-decoration: none;
+}
+
+#index-article {
     margin: 0 auto;
     width: 80%;
 }
