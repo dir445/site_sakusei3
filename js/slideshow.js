@@ -71,10 +71,15 @@ for(const slideshow of slideshows) {
             slideTrack.appendChild(clone);
         }        
         //各div要素の大きさを画像の大きさに合わせて設定する
-        slideTrack.style.width = (slideWidth * slides.length) + 'px';  
+        slideshow.style.maxWidth = slideWidth + 'px';
+        slideList.style.Width = slideWidth + 'px';
+
+
         slideTrack.style.height = slideHeight + 'px';  
-        slideList.style.width = slideWidth + 'px';
-        slideshow.style.width = slideWidth + 'px';
+        slideTrack.style.width = (slideWidth * slides.length) + 'px';
+        //slideTrack.style.width = (slides.length * 100) + '%';
+        
+        
         slides.forEach((slide,i)=>{
             slide.style.width = slideWidth + 'px';
             slides[i].style.left = slideWidth * i +'px';

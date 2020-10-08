@@ -9,7 +9,7 @@ header li {
 }
 
 /* index */
-#menu-main {
+main {
     margin: 0 auto;
     width: 80%;
 }
@@ -33,9 +33,9 @@ header li {
         position: relative;
         width: 200px;
     }
-    /*#nav-toggle {
+    #nav-toggle {
         display: none;
-    }*/
+    }
 }
 
 .menu-item {
@@ -71,5 +71,5 @@ header li {
 }
 
 #index-article p{
-    word-wrap: break-word
+    word-wrap: break-word;
 }

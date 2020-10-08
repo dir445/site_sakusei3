@@ -4,8 +4,16 @@ $('.menu-item-link').click(function() {
     return false;
 });
 
+let accordionMenu = $('#accordion-menu');
+
 $('#nav-toggle').click(function() {
     $(this).toggleClass('fa-bars');
     $(this).toggleClass('fa-times');
-    $('+#accordion-menu',this).slideToggle();
+    accordionMenu.slideToggle();
+});
+
+$(window).resize(function() {
+    if($(window).innerWidth > 800) {
+        accordionMenu.show();
+    }
 });

@@ -3,6 +3,7 @@
     position: relative;
     display: none;
     margin-bottom: 24px;
+    height: auto;
 }
 
 .slideshow.slideshow-initialized {
@@ -15,6 +16,7 @@
     top: 50%;
     width: 20px;
     height: 20px;
+    outline: none;
 }
 
 .prev-button {
@@ -25,15 +27,27 @@
     right: -25px;
 }
 
+.prev-button::after{
+    font-family: "Font Awesome 5 Free";
+    content: '\f104';
+    font-weight: 900;
+}
+
+.next-button::after{
+    font-family: "Font Awesome 5 Free";
+    content: '\f105';
+    font-weight: 900;
+}
+
 .slide-list {
     overflow: hidden;
     position: relative;
+    object-fit: contain;
 }
 
 .slide-track{
     background-color: tomato;
     position: relative;
-    height: auto;
     /*transition: transform 0.5s;*/
 }
 
@@ -52,7 +66,6 @@
     justify-content: center;
     width: 100%;
     margin: auto;
-    list-style: none;
     margin-block-start: 0;
     margin-block-end: 0;
     padding-inline-start: 0px;
@@ -61,8 +74,17 @@
 .dots li {
     position: relative;
     display: inline-block;
+    margin-right: 6px;
+}
+
+.dot button {
+    width: 12px;
+    height: 12px;
+    border-radius: 6px;
+    border: 1px black solid;
+    outline: none;
 }
 
 .dot-selected {
-    background-color: teal;
+    background-color: black;
 }
