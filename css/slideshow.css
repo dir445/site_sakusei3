@@ -6,6 +6,10 @@
     height: auto;
 }
 
+.wrapper {
+    max-width: 800px;
+}
+
 .slideshow.slideshow-initialized {
     display: block;
 }
@@ -40,23 +44,27 @@
 }
 
 .slide-list {
-    overflow: hidden;
+    /*overflow: hidden;*/
     position: relative;
     object-fit: contain;
 }
 
 .slide-track{
-    background-color: tomato;
+    /*background-color: tomato;*/
     position: relative;
-    /*transition: transform 0.5s;*/
 }
 
 .slide{
-    position: absolute;
+    /*position: absolute;*/
+    width: 100%;
+    height: auto;
+    float: left;
 }
 
 .slide img{
     width: 100%;
+    max-width: 100%;
+    height: auto;
 }
 
 .dots {

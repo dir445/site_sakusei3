@@ -72,18 +72,20 @@ for(const slideshow of slideshows) {
         }        
         //各div要素の大きさを画像の大きさに合わせて設定する
         slideshow.style.maxWidth = slideWidth + 'px';
-        slideList.style.Width = slideWidth + 'px';
+        slideList.style.maxWidth = slideWidth + 'px';
 
 
-        slideTrack.style.height = slideHeight + 'px';  
-        slideTrack.style.width = (slideWidth * slides.length) + 'px';
-        //slideTrack.style.width = (slides.length * 100) + '%';
-        
+        //slideTrack.style.height = slideHeight + 'px';  
+        //slideTrack.style.width = (slideWidth * slides.length) + 'px';
+        slideTrack.style.width = (slides.length * 100) + '%';
+        slideTrack.style.paddingBottom = (slideHeight / slideWidth * 100) + '%';
         
         slides.forEach((slide,i)=>{
-            slide.style.width = slideWidth + 'px';
-            slides[i].style.left = slideWidth * i +'px';
+            slide.style.maxWidth = (100 / slides.length) + '%';
+            //slide.style.width = slideWidth + 'px';
+            //slides[i].style.left = slideWidth * i +'px';
         });
+
         slider.resetTrackPosition();
         selectDot(slider.current);
         //ボタンを押したときの動作を設定
@@ -213,7 +215,10 @@ class Slider {
     }
 
     resetTrackPosition() {
-        this.trackX = (this.current + Math.floor(this.slideCount/2)) * - this.slideWidth;
-        this.slideTrack.style.transform = 'translateX('+  this.trackX + 'px)';
+        // this.trackX = (this.current + Math.floor(this.slideCount/2)) * - this.slideWidth;
+        // this.slideTrack.style.transform = 'translateX('+  this.trackX + 'px)';
+        const count = this.slideCount + Math.floor(this.slideCount/2) * 2;
+        this.trackX = -(this.current + Math.floor(this.slideCount/2)) / count * 100;
+        this.slideTrack.style.transform = 'translateX('+  this.trackX + '%)';
     }
 }
