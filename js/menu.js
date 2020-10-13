@@ -13,7 +13,7 @@ $('#nav-toggle').click(function() {
 });
 
 $(window).resize(function() {
-    if($(window).innerWidth > 800) {
+    if($(window).innerWidth() > 800) {
         accordionMenu.show();
     }
 });

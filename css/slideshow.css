@@ -4,10 +4,8 @@
     display: none;
     margin-bottom: 24px;
     height: auto;
-}
-
-.wrapper {
-    max-width: 800px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .slideshow.slideshow-initialized {
@@ -24,11 +22,11 @@
 }
 
 .prev-button {
-    left: -25px;
+    left: 0px;
 }
 
 .next-button {
-    right: -25px;
+    right: 0px;
 }
 
 .prev-button::after{
@@ -44,7 +42,7 @@
 }
 
 .slide-list {
-    /*overflow: hidden;*/
+    overflow: hidden;
     position: relative;
     object-fit: contain;
 }
@@ -86,9 +84,9 @@
 }
 
 .dot button {
-    width: 12px;
-    height: 12px;
-    border-radius: 6px;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
     border: 1px black solid;
     outline: none;
 }

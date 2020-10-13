@@ -1,17 +1,54 @@
 
-/* header */
-header ul {
-    display :flex;
+* {
+    color:#111;
 }
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    color: #666;
+}
+
+html {
+    overflow-y: scroll;
+}
+
+/* header */
+header {
+    width: 100%;
+    padding: 20px 0;
+    margin: auto;
+    text-align: center;
+    background-color: lightblue;
+}
+
 header li {
     list-style: none;
-    margin-right: 1rem;
+}
+
+@media screen and (min-width: 600px){
+    header {
+        display: flex;
+        position: relative;
+    }
+
+    header ul {
+        display: flex;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
+
+    header ul li {
+        margin-right: 1rem;
+    }
 }
 
 /* index */
 main {
     margin: 0 auto;
-    width: 80%;
 }
 
 #accordion-menu {
