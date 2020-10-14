@@ -5,7 +5,7 @@
     <title>javascriptサイト作成</title>
     <link rel="stylesheet" href="css/ress.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="videogallery.css">
+    <link rel="stylesheet" href="css/videogallery.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
 </head>
 <body>
@@ -13,13 +13,28 @@
         <ul>
             <li><a href="index.html">メニュー</a></li>
             <li><a href="slideshow.html">スライドショー</a></li>
-            <li><a href="videogallery.html">動画</a></li>
+            <li><a href="videogallery.html">動画検索</a></li>
         </ul>
     </header>
     <main>
-        <input id="query" type="text" size="10">
-        <button id="search-button">検索</button>   
+        <div id="search">
+            <input id="query" type="text" size="10">
+            <button id="search-button">検索</button>   
+        </div>
         <div id="videoList">
+            <div class="video-wrapper">
+                <div class="video">
+                    <iframe src="https://www.youtube.com/embed/1sHXhDeBPPo" allowfullscreen="">
+                    </iframe>
+                </div>
+            </div>
+            <div class="video-wrapper">
+                <div class="video">
+                    <iframe src="https://www.youtube.com/embed/1sHXhDeBPPo" allowfullscreen="">
+                    </iframe>
+                </div>
+            </div>
+            <!--<p>通信に失敗しました</p>-->
         </div>
     </main>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

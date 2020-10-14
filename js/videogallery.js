@@ -17,14 +17,14 @@ $('#search-button').on('click', function() {
         dataType: 'jsonp'
     }).done(showVideos)
     .fail((data)=> {
-        alert('通信に失敗しました');
+        showMessage('通信に失敗しました');
     });    
     return false;
 });
 
 function showVideos(data){
     if(!data.items){
-        alert('データを取得できませんでした');
+        showMessage('データを取得できませんでした');
         return;
     }
     let result = '';
@@ -36,4 +36,9 @@ function showVideos(data){
     }
     console.log(result);
     $('#videoList').html(result);
+}
+
+function showMessage(message) {
+    const paragraph = '<p>' + message +'</p>';
+    $('#videoList').html(paragraph);
 }

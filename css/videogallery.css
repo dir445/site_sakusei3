@@ -1,0 +1,61 @@
+#search {
+    text-align: center;
+    margin: 20px auto;
+}
+
+input {
+    border: 1px solid #aaa;
+    border-radius: 2px;
+    padding: 0.1rem 0.5rem;
+}
+
+#query {
+    width: 80%;
+    max-width: 20rem;
+}
+
+#search-button {
+    color:#222;
+    border: 1px solid #aaa;
+    background-color: #eee;
+    padding: 0.25rem 1rem;
+}
+
+#videoList {
+    text-align: center;
+    margin: auto;
+    max-width: 1216px;
+    background-color: green;
+    border: 1px solid red;
+
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.video-wrapper {
+    max-width: 560px;
+    margin: 20px auto;
+}
+
+.video {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-top:56.25%;
+}
+
+.video iframe {
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+/* @media screen and (min-width: 1140px) {
+    .video-wrapper {
+        float: left;
+        width: calc((100%-20px)/2);
+        margin-right: 20px;
+    }
+}  */
