@@ -29,9 +29,9 @@ function showVideos(data){
     }
     let result = '';
     for(let item of data.items){
-        let video = '<div class="video"><iframe src="https://www.youtube.com/embed/';
+        let video = '<div class="video-wrapper"><div class="video"><iframe src="https://www.youtube.com/embed/';
         video += item.id.videoId;
-        video += '" allowfullscreen></iframe></div>';
+        video += '" allowfullscreen></iframe></div></div>';
         result += video;
     }
     console.log(result);
