@@ -1,6 +1,15 @@
 console.log(APIKEY);
 
-$('#search-button').on('click', function() {
+const maxQueryLength = 100;
+
+$('#query').on('keyup keydown keypress change',function() {
+    console.log($(this).val().length);
+});
+
+$('#search > input[type="submit"]').on('click', function(e) {
+    console.log("a");
+    e.preventDefault();
+
     let url = 'https://www.googleapis.com/youtube/v3/search?';    
     url += 'type=video';
     url += '&part=snippet';
