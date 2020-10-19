@@ -1,6 +1,12 @@
+
+
 #search {
     text-align: center;
-    margin: 20px auto;
+    margin: 20px auto 30px;
+}
+
+#queryLength {
+    font-size: 0.8em;
 }
 
 input {
@@ -9,7 +15,7 @@ input {
     padding: 0.1rem 0.5rem;
 }
 
-#query {
+#query {    
     width: 80%;
     max-width: 20rem;
 }
@@ -19,9 +25,6 @@ input {
     border: 1px solid #aaa;
     background-color: #eee;
     padding: 0.25rem 1rem;
-}
-
-#videoList {
 }
 
 .video-wrapper {
