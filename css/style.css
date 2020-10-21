@@ -15,48 +15,75 @@ html {
     overflow-y: scroll;
 }
 
-h3 {
+main h3 {
     text-align: center;
     margin: 20px auto;
 }
 
 /* header */
 header {
+    position: fixed;
+    left: 0;
+    top: 0;
     width: 100%;
-    padding: 20px 0;
+    height: auto;
     margin: auto;
     text-align: center;
     background-color: lightblue;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
 
-header li {
+header .nav-toggle {
+    display: block;
+}
+
+header ul {
+    display: none;
+}
+
+header ul.active {
+    display: block;
+}
+
+ header ul li {
+    /* line-height: 0;
+    visibility: hidden;
+    transition: .2s;
+    opacity: 0; */
     list-style: none;
 }
+/*
+header ul.active li {
+    line-height: 1.5;
+    opacity: 1;
+    visibility :visible;
+} */
 
 @media screen and (min-width: 600px){
-    header {
-        display: flex;
-        position: relative;
+    header .nav-toggle {
+        display: none;
     }
 
-    header ul {
+    header ul,
+    header ul.active {
         display: flex;
-        position: absolute;
-        right: 0;
-        bottom: 0;
     }
 
     header ul li {
-        margin-right: 1rem;
+        padding-right: 1rem;
     }
 }
 
 /* index */
 main {
     margin: 0 auto;
+    padding-top: 30px;
 }
 
-#nav-toggle {
+.nav-toggle {
     outline: 0;
     margin: 0.5rem;
 }
@@ -65,7 +92,6 @@ main {
     display: none;
     background-color: darkgrey;
     padding :0.5rem;
-    
 }
 
 @media screen and (min-width: 800px) {
@@ -73,7 +99,6 @@ main {
         display: flex;
     }
     #accordion-menu {
-        display: block;
         position: relative;
         width: 200px;
         overflow-y: scroll;
@@ -88,7 +113,6 @@ main {
 }
 
 .submenu {
-    /* padding-left: 1rem; */
     display: none;
     padding: 0.5rem;
 }
@@ -129,4 +153,11 @@ main {
     width: 100%;
     max-width: 800px;
     height: auto;
+}
+
+.top {
+    position: fixed;
+    right: 1em;
+    bottom: 1em;
+    background-color: #faa;
 }

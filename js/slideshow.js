@@ -36,8 +36,6 @@ for(const slideshow of slideshows) {
     slideshow.appendChild(nextButton);
     slideshow.appendChild(dotList);
 
-    //const sideCloneCount = Math.floor(slideImgs.length / 2);
-
     waitOnComplete(slideImgs , function(){
         //画像サイズの最大値を取得
         let slideWidth = 0;
