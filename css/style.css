@@ -20,13 +20,16 @@ main h3 {
     margin: 20px auto;
 }
 
+main {
+    margin: 0 auto;
+}
+
 /* header */
 header {
-    position: fixed;
+    position: sticky;
     left: 0;
     top: 0;
     width: 100%;
-    height: auto;
     margin: auto;
     text-align: center;
     background-color: lightblue;
@@ -36,39 +39,31 @@ header {
     align-items: flex-end;
 }
 
-header .nav-toggle {
-    display: block;
+header ul li {
+    list-style: none;
 }
 
-header ul {
+.nav-toggle {
+    display: block;
+    outline: 0;
+    margin: 0.5rem;
+}
+
+.nav-toggle+* {
     display: none;
 }
 
-header ul.active {
+.nav-toggle.active+* {
     display: block;
 }
 
- header ul li {
-    /* line-height: 0;
-    visibility: hidden;
-    transition: .2s;
-    opacity: 0; */
-    list-style: none;
-}
-/*
-header ul.active li {
-    line-height: 1.5;
-    opacity: 1;
-    visibility :visible;
-} */
-
 @media screen and (min-width: 600px){
-    header .nav-toggle {
+    .nav-toggle {
         display: none;
     }
 
-    header ul,
-    header ul.active {
+    .nav-toggle+*,
+    .nav-toggle.active+* {
         display: flex;
     }
 
@@ -78,33 +73,41 @@ header ul.active li {
 }
 
 /* index */
-main {
-    margin: 0 auto;
-    padding-top: 30px;
+#index-menu{
+    background-color: darkgrey;
 }
 
-.nav-toggle {
-    outline: 0;
-    margin: 0.5rem;
+#index-menu .nav-toggle {
+    display: inline;
 }
 
 #accordion-menu {
     display: none;
-    background-color: darkgrey;
-    padding :0.5rem;
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 600px) {
     #menu-main {
         display: flex;
     }
+    
+    #index-menu {
+        position: fixed;
+        width: 200px;
+        height: 100%;
+    }
+
+    #menu-main article {
+        padding-left: 200px;
+    }
+
+    #index-menu .nav-toggle {
+        display: none;
+    }
+
     #accordion-menu {
+        display: block;
         position: relative;
         width: 200px;
-        overflow-y: scroll;
-    }
-    #nav-toggle {
-        display: none;
     }
 }
 
@@ -155,9 +158,14 @@ main {
     height: auto;
 }
 
-.top {
+#top {
     position: fixed;
     right: 1em;
-    bottom: 1em;
+    bottom: -50px;
     background-color: #faa;
+    transition: bottom 0.1s;
+}
+
+#top.appear {
+    bottom: 1em;
 }
