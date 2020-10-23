@@ -73,91 +73,63 @@ header ul li {
 }
 
 /* index */
-#index-menu{
-    background-color: darkgrey;
+#accordion-menu{
+    margin: 0 auto;
+    width: 80%;
 }
 
-#index-menu .nav-toggle {
-    display: inline;
+#accordion-menu li {
+    list-style: none;
+    position: relative;
 }
 
-#accordion-menu {
+.content {
+    border: 1px solid #555;
+    border-top: none;
+}
+
+.menu-item-link {
+    background-color: rgb(124, 124, 216);
+    border-bottom: 1px solid #fff;
+    color: #fff;
+    display: block;
+    padding: 0.5em;
+    position: relative;
+}
+
+.menu-item-link+* {
     display: none;
 }
 
-@media screen and (min-width: 600px) {
-    #menu-main {
-        display: flex;
-    }
-    
-    #index-menu {
-        position: fixed;
-        width: 200px;
-        height: 100%;
-    }
-
-    #menu-main article {
-        padding-left: 200px;
-    }
-
-    #index-menu .nav-toggle {
-        display: none;
-    }
-
-    #accordion-menu {
-        display: block;
-        position: relative;
-        width: 200px;
-    }
+.childmenu {
+    background-color:rgb(150, 150, 185);
 }
 
-.menu-item {
-    padding-left: 1rem;
-}
-
-.submenu {
-    display: none;
-    padding: 0.5rem;
-}
-
-.submenu-item {
-    border-bottom: 1px solid #555;
-    background-color: lightpink;
+.menu-item-link:hover {
+    color: #ccc;
 }
 
 .menu-item-link:after {
     font-family: "Font Awesome 5 Free";
     content: '\f106';
     font-weight: 900;
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    margin-top: -10px;
 }
 
 .menu-item-link.menu-open:after {
     content: '\f107';
 }
 
-#accordion-menu li {
-    list-style: none;
-}
-
-#accordion-menu a {
-    text-decoration: none;
-}
-
-#index-article {
-    margin: 0 auto;
-    width: 80%;
-}
-
-#index-article p{
-    word-wrap: break-word;
-}
-
-#menu-main img {
+#accordion-menu img {
     width: 100%;
     max-width: 800px;
     height: auto;
 }
 
+/* トップへ戻るボタン */
 #top {
     position: fixed;
     right: 1em;

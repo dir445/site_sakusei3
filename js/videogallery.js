@@ -1,4 +1,3 @@
-console.log(APIKEY);
 
 const maxQueryLength = 1000;
 

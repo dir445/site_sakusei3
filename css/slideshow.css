@@ -48,12 +48,10 @@
 }
 
 .slide-track{
-    /*background-color: tomato;*/
     position: relative;
 }
 
 .slide{
-    /*position: absolute;*/
     width: 100%;
     height: auto;
     float: left;
@@ -68,10 +66,9 @@
 .dots {
     position: absolute;
     bottom: -25px;
+    width: calc(100% - 40px);
     display: flex;
     justify-content: center;
-    width: 100%;
-    margin: auto;
     margin-block-start: 0;
     margin-block-end: 0;
     padding-inline-start: 0px;
